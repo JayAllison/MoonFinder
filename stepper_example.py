@@ -4,13 +4,11 @@
 import gpiozero
 import time
 
-print "Stepper Motor Example:"
-
 # which pins are connected to the stepper motor driver, in order 1-4
 STEPPER_GPIO = (23, 22, 27, 17)
 
 # the patterns on the pins that cause the motor to rotate
-# it does not matter where the pattern starts, just how it progresses
+# it does not really matter where the pattern starts, just how it progresses
 STEPS = (
     (1, 0, 0, 0),
     (1, 1, 0, 0),
@@ -22,11 +20,13 @@ STEPS = (
     (1, 0, 0, 1)
 )
 
-print " - Initializing GPIO pins..."
-# create the software drivers for the GPIO pins
 STEPPER_PINS = []
-for gpio_pin in range(len(STEPPER_GPIO)):
-    STEPPER_PINS.append(gpiozero.OutputDevice(STEPPER_GPIO[gpio_pin]))
+
+
+def initialize_gpio():
+    # create the software drivers for the GPIO pins
+    for gpio_pin in range(len(STEPPER_GPIO)):
+        STEPPER_PINS.append(gpiozero.OutputDevice(STEPPER_GPIO[gpio_pin]))
 
 
 # write the given position tuple out to the pins
@@ -55,15 +55,30 @@ def rotate_steps_counterclockwise(steps, delay):
 
 
 # run an example of turning half a rotation and then turning back
-do_steps = 2048
-delay = 0.001
-print " - Rotating clockwise..."
-rotate_steps_clockwise(do_steps, delay)
+def run_example():
 
-print " - Rotating counterclockwise..."
-rotate_steps_counterclockwise(do_steps, delay)
+    print "Stepper Motor Example:"
 
-print " - Releasing motor..."
-motor_off()
+    do_steps = 2048
+    do_delay = 0.001
 
-print "Done."
+    print " - Running " + str(do_steps) + " steps in each direction, " \
+          "with " + str(do_delay) + "s delay between each step..."
+
+    print " - Initializing GPIO pins..."
+    initialize_gpio()
+
+    print " - Rotating clockwise..."
+    rotate_steps_clockwise(do_steps, do_delay)
+
+    print " - Rotating counterclockwise..."
+    rotate_steps_counterclockwise(do_steps, do_delay)
+
+    print " - Releasing motor..."
+    motor_off()
+
+    print "Done."
+
+
+if __name__ == "__main__":
+    run_example()
