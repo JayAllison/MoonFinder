@@ -12,6 +12,7 @@ lsm303 = Adafruit_LSM303.LSM303()
 while True:
     accelerometer, magnetometer = lsm303.read()
     # this is how the internet says to turn magnetometer X & Y into a compass heading...
-    compass_heading = math.atan2(magnetometer[1], magnetometer[0]) * 180 / math.pi
+    # Yes, the reading back from this compass library is (X, Z, Y) - that's not a typo!
+    compass_heading = math.atan2(magnetometer[2], magnetometer[0]) * 180 / math.pi
     print "Compass heading for " + str(magnetometer) + ": " + str(compass_heading)
     time.sleep(0.5)
