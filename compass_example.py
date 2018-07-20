@@ -13,6 +13,11 @@ while True:
     accelerometer, magnetometer = lsm303.read()
     # this is how the internet says to turn magnetometer X & Y into a compass heading...
     # Yes, the reading back from this compass library is (X, Z, Y) - that's not a typo!
-    compass_heading = math.atan2(magnetometer[2], magnetometer[0]) * 180 / math.pi
+    # for this example, I'm using a 180-degree offset because I want :
+    #   N = 0 (or 360)
+    #   E = 90
+    #   S = 180
+    #   W = 270
+    compass_heading = math.atan2(magnetometer[2], magnetometer[0]) * 180 / math.pi + 180
     print "Compass heading for " + str(magnetometer) + ": " + str(compass_heading)
     time.sleep(0.5)
