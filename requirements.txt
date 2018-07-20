@@ -1,0 +1,3 @@
+gpiozero
+pyephem
+Adafruit_LSM303
