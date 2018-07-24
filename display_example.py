@@ -26,8 +26,8 @@ import Adafruit_GPIO as GPIO
 import Adafruit_GPIO.SPI as SPI
 
 # TFT display parameters
-WIDTH = 128
-HEIGHT = 128
+TFT_WIDTH = 128
+TFT_HEIGHT = 128
 SPEED_HZ = 4000000
 
 # RPi GPIO & SPI configuration for TFT display
@@ -43,15 +43,18 @@ disp = ST7735.ST7735(
     spi=SPI.SpiDev(
         SPI_PORT,
         SPI_DEVICE,
-        max_speed_hz=SPEED_HZ))
+        max_speed_hz=SPEED_HZ),
+    width=TFT_WIDTH,
+    height=TFT_HEIGHT)
 
 # Initialize display, clear the buffer to white, write buffer to screen
 disp.begin()
-disp.clear((255,255,255))
+disp.clear((0,0,0))
 disp.display()
+draw = disp.draw()
 
 text = "Hello, World!"
-draw = disp.draw()
 font = ImageFont.load_default()
-draw.text((0, 0), text, font=font, fill=fill)
+draw.text((10, 10), text, font=font, fill=(255,255,255))
+
 disp.display()
