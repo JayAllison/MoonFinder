@@ -1,3 +1,6 @@
-gpiozero
 pyephem
+RPi.GPIO
+gpiozero
+Adafruit_GPIO
 Adafruit_LSM303
+ST7735
