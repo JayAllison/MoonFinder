@@ -1,5 +1,5 @@
 // edit these values to configure the bracket
-telescope_OD = 116;
+telescope_OD = 120;
 bracket_thickness = 4;
 bracket_width = 12;
 screw_diameter = 3.5;
@@ -30,7 +30,7 @@ union() {
     difference() {
         translate([-bracket_thickness/2, (inner_diameter+screwplate_length)/2, 0]) 
             cube(size=[bracket_thickness, screwplate_length, bracket_width], center=true);
-        translate([bracket_thickness/2, (inner_diameter+screwplate_length)/2, 0]) 
+        translate([-bracket_thickness/2, (inner_diameter+screwplate_length)/2, 0]) 
             rotate([0, 90, 0]) 
                 cylinder(h=2*bracket_thickness, d=screw_diameter, center=true, $fn=256);
     }
