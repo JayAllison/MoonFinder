@@ -11,7 +11,7 @@ def nmea_checksum(message):
 
 
 # open the serial port in buffered, non-blocking mode at the GPS's default baud rate
-com_port = serial.Serial("COM6", 9600, timeout=1)
+com_port = serial.Serial("/dev/serial0", 9600, timeout=1)
 serial_data = io.BufferedReader(com_port)
 
 print "Listening for GPS NMEA data on " + com_port.name + " (" + str(com_port.is_open) + ")..."
