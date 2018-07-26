@@ -74,13 +74,14 @@ for line in serial_data:
                 if elements[6] != "1":
                     print "No valid GPS signal"
                 else:
-                    time = elements[1]
-                    latitude = elements[2] + " " + elements[3]
-                    longitude = elements[4] + " " + elements[5]
-                    altitude = elements[9]
+                    time = "TME " + elements[1]
+                    latitude = "LAT " + elements[2] + " " + elements[3]
+                    longitude = "LON " + elements[4] + " " + elements[5]
+                    altitude = "ALT " + elements[9]
 
-                    draw.text((10, 10), time, font=small_font, fill=(255, 255, 255))
-                    draw.text((10, 20), time, font=small_font, fill=(255, 0, 0))
-                    draw.text((10, 30), latitude, font=small_font, fill=(0, 255, 0))
-                    draw.text((10, 40), longitude, font=small_font, fill=(0, 0, 255))
+                    draw.rectangle((0, 0, TFT_WIDTH, TFT_HEIGHT), fill=0, outline=0)
+                    draw.text((5, 10), time, font=medium_font, fill=(255, 255, 255))
+                    draw.text((5, 25), latitude, font=medium_font, fill=(255, 0, 0))
+                    draw.text((5, 40), longitude, font=medium_font, fill=(0, 255, 0))
+                    draw.text((5, 55), altitude, font=medium_font, fill=(0, 0, 255))
                     tft_display.display()
