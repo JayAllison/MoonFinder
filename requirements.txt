@@ -3,4 +3,6 @@ RPi.GPIO
 gpiozero
 Adafruit_GPIO
 Adafruit_LSM303
+PIL
 ST7735
+serial
