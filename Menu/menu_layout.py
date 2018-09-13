@@ -1,4 +1,4 @@
-# build the menu structure, from the bottom to the top
+# define the menu structure, from the bottom to the top
 from MenuElement import MenuElement
 
 navigate = MenuElement("Navigate", MenuElement.MENU)

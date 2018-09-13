@@ -192,8 +192,8 @@ Wire|Cable B
 - [x] Write GPS example to show myself I can do it
 - [x] Install gpsd & gpsmon (only run gpsd on boot if you want to lose control of serial0!)
 - [ ] Work on prototype of pan & tilt bracket
-- [* ] Build handset prototype
-- [ ] Design menuing software
+- [x] Build handset prototype
+- [x] Design menuing software
 - [ ] *Task TBD*
 - [ ] *Task TBD*
 - [ ] *Task TBD*

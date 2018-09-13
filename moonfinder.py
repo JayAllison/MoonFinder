@@ -71,7 +71,7 @@ def start():
 
     # initialize the user-interface state machine
     global _ui
-    _ui = UserInterface(lcd_display, top_menu, error_led,
+    _ui = UserInterface("Moon Finder", lcd_display, top_menu, error_led,
                         _UP_BUTTON, _CENTER_BUTTON, _DOWN_BUTTON, _LEFT_BUTTON, _RIGHT_BUTTON)
 
 

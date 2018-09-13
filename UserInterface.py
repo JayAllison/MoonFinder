@@ -1,10 +1,23 @@
+# a class that defines the user interface state machine for the MoonFinder application
+# this class drives the LCD display and the menu system
+
 from gpiozero import Button
+from Menu.MenuElement import MenuElement
 from PIL import ImageFont
 from signal import pause
+
+FONT_SIZE = 16
+LEFT_MARGIN = 10
+TOP_MARGIN = 10
+LINE_SPACING = 16
+MENU_COLOR = (255,255,255)
+TITLE_COLOR = (128, 128, 128)
+SELECTED_COLOR = (255, 255, 0)
 
 class UserInterface(object):
 
     def __init__(self,
+                 title,
                  display,
                  top_menu,
                  error_led,
@@ -14,8 +27,10 @@ class UserInterface(object):
                  left_button_gpio,
                  right_button_gpio):
 
+        self.title = title
         self.display = display
         self.current_menu = top_menu
+        self.selected = 0
 
         self.error_led = error_led
 
@@ -25,8 +40,10 @@ class UserInterface(object):
         self.left_button = Button(left_button_gpio)
         self.right_button = Button(right_button_gpio)
 
-        self.font = ImageFont.truetype("Fonts/Perfect DOS VGA 437 Win.ttf", 16)
-        self.menu_color = (255, 255, 255)
+        self.font = ImageFont.truetype("Fonts/Perfect DOS VGA 437 Win.ttf", FONT_SIZE)
+        self.menu_color = MENU_COLOR
+        self.title_color = TITLE_COLOR
+        self.selected_color = SELECTED_COLOR
 
     def run(self):
         self.top_button.when_pressed = self.top_pressed
@@ -36,43 +53,54 @@ class UserInterface(object):
         self.right_button.when_pressed = self.right_pressed
 
         # show the menu to the user
-        self.show_menu(self.current_menu)
+        self.show_menu()
 
         # now wait for the user's actions
         pause()
 
-    def show_menu(self, menu):
+    def show_menu(self):
+        # display is 128x128 - our working area is that less the margins and the title
+        # each line of 16-pt font takes 10 pixels of space plus some separation
+        # we can really only fit in 6 menu choices
+        # TODO: scrolling a longer menu is not implemented
+
         self.display.clear((0, 0, 0))
         canvas = self.display.draw()
-        canvas.text((10, 10), menu.title, font=self.font, fill=self.menu_color)
+        x = LEFT_MARGIN
+        y = TOP_MARGIN
+        canvas.text((x, y), self.title, font=self.font, fill=self.title_color)
+        for item in self.current_menu.choices:
+            y += LINE_SPACING
+            canvas.text((x, y), "[ ]" + item.title, font=self.font, fill=self.menu_color)
         self.display.display()
 
+    # navigate down the menu
     def top_pressed(self):
-        self.display.clear((0, 0, 0))
-        canvas = self.display.draw()
-        canvas.text((10, 10), "TOP", font=self.font, fill=self.menu_color)
-        self.display.display()
+        self.selected = self.selected - 1
+        if self.selected < 0:
+            self.selected = 0
+        self.show_menu()
 
+    # activate the current menu item
     def center_pressed(self):
-        self.display.clear((0, 0, 0))
-        canvas = self.display.draw()
-        canvas.text((10, 10), "CENTER", font=self.font, fill=self.menu_color)
-        self.display.display()
+        if self.current_menu.menu_type == MenuElement.MENU:
+            self.current_menu = self.current_menu.choices[self.selected]
+            self.selected = 0
+            self.show_menu()
+        # TODO: activate the action...
 
+    # navigate up the menu
     def bottom_pressed(self):
-        self.display.clear((0, 0, 0))
-        canvas = self.display.draw()
-        canvas.text((10, 10), "BOTTOM", font=self.font, fill=self.menu_color)
-        self.display.display()
+        self.selected = self.selected + 1
+        if self.selected >= len(self.current_menu.choices):
+            self.selected = len(self.current_menu.choices)
+        self.show_menu()
 
+    # back out a level on the menu
     def left_pressed(self):
-        self.display.clear((0, 0, 0))
-        canvas = self.display.draw()
-        canvas.text((10, 10), "LEFT", font=self.font, fill=self.menu_color)
-        self.display.display()
+        self.current_menu = self.current_menu.parent
+        self.selected = 0
 
+    # do what???
     def right_pressed(self):
-        self.display.clear((0, 0, 0))
-        canvas = self.display.draw()
-        canvas.text((10, 10), "RIGHT", font=self.font, fill=self.menu_color)
-        self.display.display()
+        self.show_menu()

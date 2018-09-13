@@ -6,6 +6,7 @@
 # - if menu, what menu choices lie beneath it
 # - if leaf, what action to take when it's selected
 
+
 class MenuElement(object):
     MENU = 1
     LEAF = 2

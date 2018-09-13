@@ -3,6 +3,7 @@ from menu_layout import top_menu
 
 spacer = "    "
 
+
 def dump_choices(menu, level=0):
     if len(menu.choices) == 0:
         print spacer*level + "(none)"
