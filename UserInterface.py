@@ -100,7 +100,7 @@ class UserInterface(object):
     def bottom_pressed(self):
         self.selected = self.selected + 1
         if self.selected >= len(self.current_menu.choices):
-            self.selected = len(self.current_menu.choices)
+            self.selected = len(self.current_menu.choices) - 1
         self.show_menu()
 
     # back out a level on the menu
@@ -108,6 +108,7 @@ class UserInterface(object):
         if self.current_menu.parent:
             self.current_menu = self.current_menu.parent
             self.selected = 0
+            self.show_menu()
 
     # do what???
     def right_pressed(self):
