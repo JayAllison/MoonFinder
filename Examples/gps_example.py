@@ -28,7 +28,7 @@ for line in serial_data:
                 print "GPGGA received message does not contain the expected data elements!"
             else:
                 if elements[6] != "1":
-                    print "No valid GPS signal"
+                    print "No valid GPS signal " + line,
                 else:
                     print "Latitude: " + elements[2] + " " + elements[3] + ",",
                     print "Longitude: " + elements[4] + " " + elements[5] + ",",
