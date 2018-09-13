@@ -1,6 +1,7 @@
 from gpiozero import LED
 from gpiozero import Button
 
+# this is how I've built my telescope handset
 error_led = LED(4)
 
 up_button = Button(7)
@@ -10,20 +11,18 @@ left_button = Button(20)
 right_button = Button(21)
 
 while True:
-    any_held = False
-    if up_button.is_held:
-        print "UP"
-        any_held = True
-    if center_button.is_held:
-        print "CENTER"
-        any_held = True
-    if down_button.is_held:
-        print "DOWN"
-        any_held = True
-    if left_button.is_held:
-        print "LEFT"
-        any_held = True
-    if right_button.is_held:
-        print "RIGHT"
-        any_held = True
-    error_led.value = any_held
+    up = up_button.value
+    center = center_button.value
+    down = down_button.value
+    left = left_button.value
+    right = right_button.value
+
+    up_symbol = "U" if up else "-"
+    center_symbol = "C" if up else "-"
+    down_symbol = "D" if up else "-"
+    left_symbol = "L" if up else "-"
+    right_symbol = "R" if up else "-"
+
+    print "\b\b\b\b\b\b" + up_symbol + center_symbol + down_symbol + left_symbol + right_symbol,
+
+    error_led.value = up or center or down or left or right

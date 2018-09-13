@@ -1,5 +1,7 @@
 Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-source software? Let's try!
 
+Can I use **ALL** of the GPIO pins or a Raspberry Pi? Let's try!
+
 ![Azimuth & Altitude](Images/azimuth-altitude.png) ![](Images/bushnell_voyager.jpg)
 
 ### Equipment:
@@ -188,9 +190,9 @@ Wire|Cable B
 - [x] Write display example to show myself I can do it
 - [x] Disable serial console, enable serial hardware via raspi-config, then reboot
 - [x] Write GPS example to show myself I can do it
-- [x] Install gpsd & gpsmon
+- [x] Install gpsd & gpsmon (only run gpsd on boot if you want to lose control of serial0!)
 - [ ] Work on prototype of pan & tilt bracket
-- [ ] Build handset
+- [* ] Build handset prototype
 - [ ] Design menuing software
 - [ ] *Task TBD*
 - [ ] *Task TBD*
