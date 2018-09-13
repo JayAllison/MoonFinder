@@ -25,7 +25,7 @@ class UserInterface(object):
         self.left_button = Button(left_button_gpio)
         self.right_button = Button(right_button_gpio)
 
-        self.font = ImageFont.truetype("../Fonts/Perfect DOS VGA 437 Win.ttf", 16)
+        self.font = ImageFont.truetype("Fonts/Perfect DOS VGA 437 Win.ttf", 16)
         self.menu_color = (255, 255, 255)
 
     def run(self):
@@ -42,41 +42,37 @@ class UserInterface(object):
         pause()
 
     def show_menu(self, menu):
+        self.display.clear((0, 0, 0))
         canvas = self.display.draw()
         canvas.text((10, 10), menu.title, font=self.font, fill=self.menu_color)
         self.display.display()
 
     def top_pressed(self):
-        print "TOP"
-
+        self.display.clear((0, 0, 0))
         canvas = self.display.draw()
         canvas.text((10, 10), "TOP", font=self.font, fill=self.menu_color)
         self.display.display()
 
     def center_pressed(self):
-        print "CENTER"
-
+        self.display.clear((0, 0, 0))
         canvas = self.display.draw()
         canvas.text((10, 10), "CENTER", font=self.font, fill=self.menu_color)
         self.display.display()
 
     def bottom_pressed(self):
-        print "BOTTOOM"
-
+        self.display.clear((0, 0, 0))
         canvas = self.display.draw()
-        canvas.text((10, 10), "BOTTOOM", font=self.font, fill=self.menu_color)
+        canvas.text((10, 10), "BOTTOM", font=self.font, fill=self.menu_color)
         self.display.display()
 
     def left_pressed(self):
-        print "LEFT"
-
+        self.display.clear((0, 0, 0))
         canvas = self.display.draw()
         canvas.text((10, 10), "LEFT", font=self.font, fill=self.menu_color)
         self.display.display()
 
     def right_pressed(self):
-        print "RIGHT"
-
+        self.display.clear((0, 0, 0))
         canvas = self.display.draw()
         canvas.text((10, 10), "RIGHT", font=self.font, fill=self.menu_color)
         self.display.display()
