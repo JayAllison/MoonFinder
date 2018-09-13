@@ -35,18 +35,7 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
     * But, my BlindsBot project ended up being a better reference for the step sequence
 * LSM303 reading with RPi: https://github.com/adafruit/Adafruit_Python_LSM303/tree/master/examples
 * ST7735 Display Library: https://github.com/cskau/Python_ST7735
-    * I got the cheap Amazon display I purchased working with the examples using this pinout:
-        * 5V - any RPi 5V
-        * GND - any RPi GND
-        * GND -NC
-        * NC - NC
-        * NC -NC
-        * LED - I connected this to RPi 3.3V
-        * SCL - RPi SCLK
-        * SDA - RPi MOSI
-        * RS - GPIO 24 (per the example)
-        * RST - GPIO 25 (per the example)
-        * CS - RPi CE0
+    * I got the cheap Amazon display I purchased working with the examples using the connections listed below
     * The examples are written for a 160x128 display, this one is 128x128
 * Python Image Library fork (pillow): https://pillow.readthedocs.io/en/5.2.x/
 * U-Blox U-Center, Windows software for GPS module: https://www.u-blox.com/en/product/u-center-windows
@@ -54,6 +43,7 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
 * NMEA sentence information: http://aprs.gids.nl/nmea/
 * RPi serial port info, per model: https://www.raspberrypi.org/documentation/configuration/uart.md
 * gpsd, gpsmon: https://www.rs-online.com/designspark/add-gps-time-and-location-to-a-raspberry-pi-project
+    * don't set gpsd to start up automatically or it will monopolize the serial port
 * Astronomical positioning library: http://rhodesmill.org/pyephem/
 * Python version of World Magnetic Model (offline): https://pypi.org/project/geomag/
 * OpenSCAD (parametric 3D modeling): http://www.openscad.org/cheatsheet/
@@ -118,6 +108,22 @@ Display a list of known celestial objects that are currently visible?
 - [x] Modify /etc/nanorc to my liking
 - [x] Set up RPi to boot w/o GUI via raspi-config
 - [x] Set up RPi /etc/wpa_supplicant/wpa_supplicant.conf with WiFi credentials for home & work
+
+### TFT Display Connections:
+
+Display|Raspberry Pi
+---|---
+5V|any RPi 5V
+GND|any RPi GND
+GND|NC
+NC|NC
+NC|NC
+LED|I connected this to RPi 3.3V
+SCL|RPi SCLK
+SDA|RPi MOSI
+RS|GPIO 24 (per the example)
+RST|GPIO 25 (per the example)
+CS|RPi CE0
 
 ### Raspberry Pi Header Pin Allocation:
 
