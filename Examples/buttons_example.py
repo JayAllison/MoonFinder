@@ -10,6 +10,8 @@ down_button = Button(16)
 left_button = Button(20)
 right_button = Button(21)
 
+print "      ",
+
 while True:
     up = up_button.value
     center = center_button.value
@@ -18,10 +20,10 @@ while True:
     right = right_button.value
 
     up_symbol = "U" if up else "-"
-    center_symbol = "C" if up else "-"
-    down_symbol = "D" if up else "-"
-    left_symbol = "L" if up else "-"
-    right_symbol = "R" if up else "-"
+    center_symbol = "C" if center else "-"
+    down_symbol = "D" if down else "-"
+    left_symbol = "L" if left else "-"
+    right_symbol = "R" if right else "-"
 
     print "\b\b\b\b\b\b" + up_symbol + center_symbol + down_symbol + left_symbol + right_symbol,
 
