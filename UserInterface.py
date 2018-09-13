@@ -76,7 +76,7 @@ class UserInterface(object):
         for item in self.current_menu.choices:
             y += LINE_SPACING
             color = self.selected_color if count == self.selected else self.menu_color
-            canvas.text((x, y), "[ ]" + item.title, font=self.font, fill=color)
+            canvas.text((x, y), "> " + item.title, font=self.font, fill=color)
             count += 1
 
         self.display.display()
@@ -90,7 +90,7 @@ class UserInterface(object):
 
     # activate the current menu item
     def center_pressed(self):
-        if self.current_menu.menu_type == MenuElement.MENU:
+        if self.current_menu.type == MenuElement.MENU:
             self.current_menu = self.current_menu.choices[self.selected]
             self.selected = 0
             self.show_menu()
