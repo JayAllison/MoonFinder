@@ -10,7 +10,7 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
     * I also have protoboards to fit the GPIO of both
 * 28BYJ-48 stepper motors and LN2003 drivers (I think I only need two, but I ordered [this five-pack](https://smile.amazon.com/gp/product/B015RQ97W8/) from Amazon)
 * LSM303 digital compass (I ordered [this dev board](https://www.adafruit.com/product/1120) from Adafruit)
-* Display (I ordered this TFT display from Amazon)
+* Display (I ordered [this TFT display](https://smile.amazon.com/gp/product/B07B4BDWCL/) from Amazon)
     * I can always fall back to [this OLED display](https://smile.amazon.com/gp/product/B00O2LLT30/) if needed
 * Limit switches (I ordered [this ten-pack](https://smile.amazon.com/gp/product/B00MFRMFS6/) from Amazon)
 * 3/4" fender washers to use as weights (got two 25-packs at Home Depot)
@@ -123,26 +123,26 @@ Display a list of known celestial objects that are currently visible?
 
 Usage|Pin|Name| |Name|Pin|Usage
 ----|---|---|---|---|---|---
-X|1|3.3V| |5V|2|X
-COMPASS|3|I2C SDA (GPIO2)| |5V|4|X
-COMPASS|5|I2C SCL (GPIO3)| |GND|6|X
-ERROR_LED?|7|GPIO4| |(GPIO14) TXD|8|GPS
-X|9|GND| |(GPIO15) RXD|10|GPS
-MOTOR 1|11|GPIO17| |(GPIO18) PWM0|12|DISPLAY?
-MOTOR 1|13|GPIO27| |GND|14|X
-MOTOR 1|15|GPIO22| |GPIO23|16|MOTOR 1
-X|17|3.3V| |GPIO24|18|DISPLAY
-DISPLAY|19|SPI MOSI (GPIO10)| |GND|20|X
-DISPLAY|21|SPI MISO (GPIO9)| |GPIO25|22|DISPLAY
-DISPLAY|23|SPI CLK (GPIO11)| |(GPIO8) SPI CE0|24|DISPLAY
-X|25|GND| |(GPIO7) SPI CE1|26|SW 1
-RESERVED|27|ID_SD| |ID_SC|28|RESERVED
-MOTOR 2|29|GPIO5| |GND|30|X
-MOTOR 2|31|GPIO6| |GPIO12|32|SW 2
-RESERVED|33|PWM1 (GPIO13)| |GND|34|X
-MOTOR 2|35|GPIO19| |GPIO16|36|SW 3
-MOTOR 2|37|GPIO26| |GPIO20|38|SW 4
-X|39|GND| |GPIO21|40|SW 5
+X|_1_|**3.3V**| |**5V**|2|X
+COMPASS|_3_|**I2C SDA (GPIO2)**| |**5V**|_4_|X
+COMPASS|_5_|**I2C SCL (GPIO3)**| |**GND**|_6_|X
+ERROR_LED|_7_|**GPIO4**| |**(GPIO14) TXD**|_8_|GPS
+X|_9_|**GND**| |**(GPIO15) RXD**|_10_|GPS
+MOTOR 1|_11_|**GPIO17**| |**(GPIO18) PWM0**|_12_|DISPLAY?
+MOTOR 1|_13_|**GPIO27**| |**GND**|_14_|X
+MOTOR 1|_15_|**GPIO22**| |**GPIO23**|_16_|MOTOR 1
+X|_17_|**3.3V**| |**GPIO24**|_18_|DISPLAY
+DISPLAY|_19_|**SPI MOSI (GPIO10)**| |**GND**|_20_|X
+DISPLAY|_21_|**SPI MISO (GPIO9)**| |**GPIO25**|_22_|DISPLAY
+DISPLAY|_23_|**SPI CLK (GPIO11)**| |**(GPIO8) SPI CE0**|_24_|DISPLAY
+X|_25_|G**ND**| |**(GPIO7) SPI CE1**|_26_|SW 1
+RESERVED|_27_|**ID_SD**| |**ID_SC**|_28_|RESERVED
+MOTOR 2|_29_|**GPIO5**| |**GND**|_30_|X
+MOTOR 2|_31_|**GPIO6**| |**GPIO12**|_32_|SW 2
+LIMIT SWITCH|_33_|**PWM1 (GPIO13)**| |**GND**|_34_|X
+MOTOR 2|_35_|**GPIO19**| |**GPIO16**|_36_|SW 3
+MOTOR 2|_37_|**GPIO26**| |**GPIO20**|_38_|SW 4
+X|_39_|**GND**| |**GPIO21**|_40_|SW 5
 
 ### Wiring to Handset:
 
