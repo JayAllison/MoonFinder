@@ -11,6 +11,7 @@ LEFT_MARGIN = 10
 TOP_MARGIN = 10
 TITLE_SPACING = 5
 LINE_SPACING = 16
+MENU_ITEM_MAX_CHARACTERS = 11
 MENU_COLOR = (255,255,255)
 TITLE_COLOR = (128, 128, 128)
 SELECTED_COLOR = (255, 255, 0)
@@ -76,7 +77,10 @@ class UserInterface(object):
         for item in self.current_menu.choices:
             y += LINE_SPACING
             color = self.selected_color if count == self.selected else self.menu_color
-            canvas.text((x, y), "> " + item.title, font=self.font, fill=color)
+            title = item.title[:MENU_ITEM_MAX_CHARACTERS]
+            if item.type == MenuElement.MENU:
+                title += " >"
+            canvas.text((x, y), title, font=self.font, fill=color)
             count += 1
 
         self.display.display()
@@ -90,7 +94,7 @@ class UserInterface(object):
 
     # activate the current menu item
     def center_pressed(self):
-        if self.current_menu.type == MenuElement.MENU:
+        if self.current_menu.choices[self.selected] == MenuElement.MENU:
             self.current_menu = self.current_menu.choices[self.selected]
             self.selected = 0
             self.show_menu()

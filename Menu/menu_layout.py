@@ -1,6 +1,14 @@
 # define the menu structure, from the bottom to the top
 from MenuElement import MenuElement
 
+# TOP LEVEL
+#  - Navigate
+#
+#  - Information
+#  - Diagnostics
+
+
+
 navigate = MenuElement("Navigate", MenuElement.MENU)
 
 information = MenuElement("Information", MenuElement.LEAF, "Gathering Information...")
