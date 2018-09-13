@@ -9,6 +9,7 @@ from signal import pause
 FONT_SIZE = 16
 LEFT_MARGIN = 10
 TOP_MARGIN = 10
+TITLE_SPACING = 5
 LINE_SPACING = 16
 MENU_COLOR = (255,255,255)
 TITLE_COLOR = (128, 128, 128)
@@ -69,9 +70,15 @@ class UserInterface(object):
         x = LEFT_MARGIN
         y = TOP_MARGIN
         canvas.text((x, y), self.title, font=self.font, fill=self.title_color)
+        y += TITLE_SPACING
+
+        count = 0
         for item in self.current_menu.choices:
             y += LINE_SPACING
-            canvas.text((x, y), "[ ]" + item.title, font=self.font, fill=self.menu_color)
+            color = self.selected_color if count == self.selected else self.menu_color
+            canvas.text((x, y), "[ ]" + item.title, font=self.font, fill=color)
+            count += 1
+
         self.display.display()
 
     # navigate down the menu
@@ -98,8 +105,9 @@ class UserInterface(object):
 
     # back out a level on the menu
     def left_pressed(self):
-        self.current_menu = self.current_menu.parent
-        self.selected = 0
+        if self.current_menu.parent:
+            self.current_menu = self.current_menu.parent
+            self.selected = 0
 
     # do what???
     def right_pressed(self):
