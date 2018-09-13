@@ -57,9 +57,9 @@ draw = disp.draw()
 
 text = "Hello, World!"
 # font = ImageFont.load_default()
-small_font = ImageFont.truetype("Perfect DOS VGA 437 Win.ttf", 8)
-medium_font = ImageFont.truetype("Perfect DOS VGA 437 Win.ttf", 16)
-big_font = ImageFont.truetype("Perfect DOS VGA 437 Win.ttf", 32)
+small_font = ImageFont.truetype("../Fonts/Perfect DOS VGA 437 Win.ttf", 8)
+medium_font = ImageFont.truetype("../Fonts/Perfect DOS VGA 437 Win.ttf", 16)
+big_font = ImageFont.truetype("../Fonts/Perfect DOS VGA 437 Win.ttf", 32)
 draw.text((10, 10), text, font=small_font, fill=(255, 0, 0))
 draw.text((10, 30), text, font=medium_font, fill=(0, 255, 0))
 draw.text((10, 60), text, font=big_font, fill=(0, 0, 255))
