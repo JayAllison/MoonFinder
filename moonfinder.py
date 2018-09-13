@@ -6,6 +6,7 @@ import logging
 from PIL import Image
 import signal
 import syslog
+import time
 import traceback
 
 
@@ -61,8 +62,9 @@ def start():
     error_led = LED(_ERROR_LED)
     error_led.off()
 
-    logo = Image.open("Images/moon_icon.png")
+    logo = Image.open("Images/moon-icon.png")
     lcd_display.display(logo)
+    time.sleep(10)
 
 
 # noinspection PyUnusedLocal
