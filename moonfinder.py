@@ -3,12 +3,12 @@ import datetime
 from gpiozero import LED
 from lcd_display import lcd_display
 import logging
+from UserInterface import UserInterface
+from Menu.menu_layout import top_menu
 from PIL import Image
 import signal
 import syslog
-import time
 import traceback
-
 
 _PRINT_INSTEAD_OF_SYSLOG = False
 _LOG_LEVEL = logging.WARNING
@@ -21,8 +21,8 @@ _DOWN_BUTTON = 16
 _LEFT_BUTTON = 20
 _RIGHT_BUTTON = 21
 
-_running = False
 _error_led = None
+_ui = None
 
 
 def _log(message):
@@ -55,23 +55,29 @@ def start():
                         format='%(asctime)s %(levelname)s %(name)s %(message)s',
                         datefmt='%Y/%m/%d %I:%M:%S%p')
 
-    global _running
-    _running = True
-
     global error_led
     error_led = LED(_ERROR_LED)
     error_led.off()
 
     logo = Image.open("Images/moon-icon.jpg")
     lcd_display.display(logo)
-    time.sleep(10)
+
+    # TODO: init the GPS
+    # TODO: init the compass
+    # TODO: zero out the azimuth using the compass
+    # TODO: zero out the altitude using the limit switch
+
+    # TODO: build a list of objects that are currently visible, and add them to the menu
+
+    # initialize the user-interface state machine
+    global _ui
+    _ui = UserInterface(lcd_display, top_menu, error_led,
+                        _UP_BUTTON, _CENTER_BUTTON, _DOWN_BUTTON, _LEFT_BUTTON, _RIGHT_BUTTON)
 
 
 # noinspection PyUnusedLocal
 def stop(signum, frame):
 
-    global _running
-    _running = False
     _log("SIGNAL received - stopping...")
 
 
@@ -80,7 +86,8 @@ def run():
     # initialize things
     start()
 
-    # TODO: the dispatch loop...
+    # this is blocking - will not return
+    _ui.run()
 
 
 def on_exit():
