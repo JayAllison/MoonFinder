@@ -2,7 +2,7 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
 
 ![Azimuth & Altitude](Images/azimuth-altitude.png) ![](Images/bushnell_voyager.jpg)
 
-###Equipment:
+### Equipment:
 
 * Bushnell Voyager basic telescope (700mm x 76mm)
     * Probably need a mock-up, too - make it from 4" PVC?
@@ -19,15 +19,15 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
 * Buttons for user input (I ordered [this pack](https://smile.amazon.com/gp/product/B07CGCPGPT/) from Amazon)
 * GPS (I ordered [this unit](https://smile.amazon.com/gp/product/B01H5FNA4K/) from Amazon)
 
-###Source Code:
+### Source Code:
 
 * My repository: https://github.com/JayAllison/MoonFinder
 
-###Tools:
+### Tools:
 
 * Fritzing: http://fritzing.org/home/
 
-###References:
+### References:
 
 * Python Raspberry Pi GPIO Wrapper Library: https://gpiozero.readthedocs.io/
 * Raspberry Pi GPIO Pinout: https://pinout.xyz/
@@ -58,15 +58,16 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
 * Python version of World Magnetic Model (offline): https://pypi.org/project/geomag/
 * OpenSCAD (parametric 3D modeling): http://www.openscad.org/cheatsheet/
 
-###3D Models:
+### 3D Models:
 
 * need to design a pan-and-tilt mount for the telescope
 * Do I need a counter-balance?
 * Do I want to gear down the movement? or use worm gears instead?
 * Can I do something kind of like this "Dobsonian" telescope?
+
 ![Dobsonian Telescope](Images/dobsonian.jpg)
 
-###Basic Approach:
+### Basic Approach:
 
 * User sets up telescope and verifies that the base is level
 * Use compass to orient rotation (azimuth) of telescope to true North
@@ -77,7 +78,7 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
     * hold position
     * track object
 
-###Remaining questions:
+### Remaining questions:
 
 * How will the user specify the lat/lon location and altitude?
 * How will the user select the celestial object?
@@ -86,17 +87,17 @@ Can I aim a telescope with a Raspberry Pi, some stepper motors, and some open-so
 * How to convert "apparent position" (azimuth, altitude) to pan and tilt rotations?
 * How to implement tracking? How smooth do I want it to be?
 
-###Hardware Ideas:
+### Hardware Ideas:
 
 * I2C OLED screen or something similar
 * Buttons for inputs (D Pad, 5 button style, etc)?
 * Button for screen brightness?
 
-###Software Ideas:
+### Software Ideas:
 
 Display a list of known celestial objects that are currently visible?
 
-###Raspberry Pi Setup Tasks:
+### Raspberry Pi Setup Tasks:
 
 *These are my standard steps for setting up a secure, headless Raspberry Pi*
 
@@ -118,33 +119,7 @@ Display a list of known celestial objects that are currently visible?
 - [x] Set up RPi to boot w/o GUI via raspi-config
 - [x] Set up RPi /etc/wpa_supplicant/wpa_supplicant.conf with WiFi credentials for home & work
 
-###Project Tasks:
-
-- [x] Create ssh key for Bitbucket
-- [x] Check out moonfinder repository onto RPi
-- [x] Write pyephem example to show myself I can do it
-- [x] Write stepper example to show myself I can do it
-- [x] Enable I2C via raspi-config
-- [x] Write compass example to show myself I can do it
-- [x] Enable SPI via raspi-config
-- [x] Write display example to show myself I can do it
-- [x] Disable serial console, enable serial hardware via raspi-config, then reboot
-- [x] Write GPS example to show myself I can do it
-- [x] Install gpsd & gpsmon
-- [ ] Work on prototype of pan & tilt bracket
-- [ ] Build handset
-- [ ] Design menuing software
-- [ ] *Task TBD*
-- [ ] *Task TBD*
-- [ ] *Task TBD*
-- [ ] *Task TBD*
-- [ ] *Task TBD*
-- [ ] *Task TBD*
-- [ ] *Task TBD*
-- [ ] Put it all together and try it out!
-
-
-###Raspberry Pi Header Pin Allocation:
+### Raspberry Pi Header Pin Allocation:
 
 Usage|Pin|Name| |Name|Pin|Usage
 ----|---|---|---|---|---|---
@@ -169,7 +144,7 @@ MOTOR 2|35|GPIO19| |GPIO16|36|SW 3
 MOTOR 2|37|GPIO26| |GPIO20|38|SW 4
 X|39|GND| |GPIO21|40|SW 5
 
-###Wiring to Handset:
+### Wiring to Handset:
 
 * Using two stranded Ethernet cables
 
@@ -194,3 +169,28 @@ Wire|Cable B
 6|SW 5
 7|ERROR LED
 8|N/C
+
+### Project Tasks:
+
+- [x] Create ssh key for Bitbucket
+- [x] Check out moonfinder repository onto RPi
+- [x] Write pyephem example to show myself I can do it
+- [x] Write stepper example to show myself I can do it
+- [x] Enable I2C via raspi-config
+- [x] Write compass example to show myself I can do it
+- [x] Enable SPI via raspi-config
+- [x] Write display example to show myself I can do it
+- [x] Disable serial console, enable serial hardware via raspi-config, then reboot
+- [x] Write GPS example to show myself I can do it
+- [x] Install gpsd & gpsmon
+- [ ] Work on prototype of pan & tilt bracket
+- [ ] Build handset
+- [ ] Design menuing software
+- [ ] *Task TBD*
+- [ ] *Task TBD*
+- [ ] *Task TBD*
+- [ ] *Task TBD*
+- [ ] *Task TBD*
+- [ ] *Task TBD*
+- [ ] *Task TBD*
+- [ ] Put it all together and try it out!
