@@ -62,7 +62,7 @@ def start():
     error_led = LED(_ERROR_LED)
     error_led.off()
 
-    logo = Image.open("Images/moon-icon.png")
+    logo = Image.open("Images/moon-icon.jpg")
     lcd_display.display(logo)
     time.sleep(10)
 
