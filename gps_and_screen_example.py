@@ -2,6 +2,7 @@ import Adafruit_GPIO.SPI as SPI
 import io
 import serial
 import ST7735
+import gpiozero
 
 from PIL import ImageFont
 
@@ -51,6 +52,8 @@ def create_display():
     return disp
 
 
+led = gpiozero.LED(4)
+
 serial_data = open_serial_reader("/dev/serial0")
 tft_display = create_display()
 
@@ -74,6 +77,7 @@ for line in serial_data:
                 if elements[6] != "1":
                     print "No valid GPS signal"
                 else:
+                    led.on()
                     time = "TME " + elements[1]
                     latitude = "LAT " + elements[2] + " " + elements[3]
                     longitude = "LON " + elements[4] + " " + elements[5]
@@ -85,3 +89,4 @@ for line in serial_data:
                     draw.text((5, 40), longitude, font=medium_font, fill=(0, 255, 0))
                     draw.text((5, 55), altitude, font=medium_font, fill=(0, 0, 255))
                     tft_display.display()
+                    led.off()
