@@ -11,7 +11,7 @@ LEFT_MARGIN = 10
 TOP_MARGIN = 10
 TITLE_SPACING = 5
 LINE_SPACING = 16
-MENU_ITEM_MAX_CHARACTERS = 11
+MENU_ITEM_MAX_CHARACTERS = 13
 MENU_COLOR = (255,255,255)
 TITLE_COLOR = (128, 128, 128)
 SELECTED_COLOR = (255, 255, 0)
@@ -79,7 +79,7 @@ class UserInterface(object):
             color = self.selected_color if count == self.selected else self.menu_color
             title = item.title[:MENU_ITEM_MAX_CHARACTERS]
             if item.type == MenuElement.MENU:
-                title += " >"
+                title = item.title[:MENU_ITEM_MAX_CHARACTERS-2] + " >"
             canvas.text((x, y), title, font=self.font, fill=color)
             count += 1
 
@@ -94,7 +94,7 @@ class UserInterface(object):
 
     # activate the current menu item
     def center_pressed(self):
-        if self.current_menu.choices[self.selected] == MenuElement.MENU:
+        if self.current_menu.choices[self.selected].type == MenuElement.MENU:
             self.current_menu = self.current_menu.choices[self.selected]
             self.selected = 0
             self.show_menu()
@@ -110,8 +110,14 @@ class UserInterface(object):
     # back out a level on the menu
     def left_pressed(self):
         if self.current_menu.parent:
-            self.current_menu = self.current_menu.parent
             self.selected = 0
+            count = -1
+            for item in self.current_menu.parent.choices:
+                count += 1
+                if item == self.current_menu:
+                    self.selected = count
+                    break
+            self.current_menu = self.current_menu.parent
             self.show_menu()
 
     # do what???
